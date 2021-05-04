@@ -21,3 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# scraper
+config.py
+*.pyc
+*.pyo
+nytimes-stats-watcher-firebase-adminsdk-*.json
+firebaseConfig.json
+
+# VS Code
+.vscode
