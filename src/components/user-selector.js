@@ -1,41 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Checkbox, Grid } from 'semantic-ui-react';
+import { Checkbox } from 'semantic-ui-react';
+
+const style = {
+  marginBottom: '1rem',
+  display: 'block',
+};
 
 const UserSelector = (props) => {
-  const { users, selectedUsers, setSelectedUsers } = props;
+  const { users, selectedUsernames, setSelectedUsernames } = props;
 
   const handleClick = (e, { value }) => {
-    const newSelectedUsers = selectedUsers.includes(value)
-      ? selectedUsers.filter((username) => username !== value)
-      : [...selectedUsers, value];
+    const newSelectedUsernames = selectedUsernames.includes(value)
+      ? selectedUsernames.filter((username) => username !== value)
+      : [...selectedUsernames, value];
 
-    setSelectedUsers(newSelectedUsers);
+    setSelectedUsernames(newSelectedUsernames);
   };
 
   return (
     <>
-      <Grid>
-        {users.map((username, i) => (
-          <Grid.Row key={i}>
-            <Checkbox
-              label={username}
-              value={username}
-              checked={selectedUsers.includes(username)}
-              onClick={handleClick}
-            />
-          </Grid.Row>
-        ))}
-      </Grid>
+      {users.map((user, i) => (
+        <Checkbox
+          key={i}
+          label={user.name}
+          value={user.name}
+          checked={selectedUsernames.includes(user.name)}
+          onClick={handleClick}
+          style={{ ...style, backgroundColor: user.colour }}
+        />
+      ))}
     </>
   );
 };
 
 UserSelector.propTypes = {
   users: PropTypes.array,
-  selectedUsers: PropTypes.array,
-  setSelectedUsers: PropTypes.func,
+  selectedUsernames: PropTypes.array,
+  setSelectedUsernames: PropTypes.func,
 };
 
 export default UserSelector;

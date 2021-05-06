@@ -6,6 +6,9 @@ import NYTHeader from './components/imitations/nyt-header';
 
 import MiniCrosswordLogo from './assets/mini.svg';
 
+import './nyt.css';
+import NYTLink from './components/imitations/nyt-link';
+
 const style = {
   display: 'flex',
   flexWrap: 'wrap',
@@ -27,11 +30,11 @@ const AppFooter = () => {
         <section style={{ flex: 2 }}>
           <NYTHeader level='h4' content='About' />
           <p>
-            I{'\''}m too broke to pay for the official <a href='https://www.nytimes.com/puzzles/stats' target='_blank' rel="noreferrer">Statistics</a> so I made my own.
+            I{'\''}m too broke to pay for the official <NYTLink href='https://www.nytimes.com/puzzles/stats' target='_blank' rel="noreferrer">Statistics</NYTLink> so I made my own.
           </p>
 
           <p>
-            A Python script scrapes the <a href='https://www.nytimes.com/puzzles/leaderboards' target='_blank' rel="noreferrer">Leaderboard</a> everyday
+            A Python script scrapes the <NYTLink href='https://www.nytimes.com/puzzles/leaderboards' target='_blank' rel="noreferrer">Leaderboard</NYTLink> everyday
             and stores each player{'\''}s times into a Google Firestore database.
           </p>
         </section>
@@ -39,21 +42,21 @@ const AppFooter = () => {
         <section style={{ flex: 1, marginLeft: '4rem' }}>
           <NYTHeader level='h4' content='Links' />
           <p>
-            <a href='https://github.com/hayeselnut/nytimes-stats-watcher' target='_blank' rel="noreferrer">
+            <NYTLink href='https://github.com/hayeselnut/nytimes-stats-watcher' target='_blank' rel="noreferrer">
               <Icon fitted name='github' /> GitHub
-            </a>
+            </NYTLink>
           </p>
 
           <p>
-            <a href='https://www.nytimes.com/crosswords/game/mini' target='_blank' rel="noreferrer">
-              <Icon fitted name='square full' /> GitHubMini Crossword
-            </a>
+            <NYTLink href='https://www.nytimes.com/crosswords/game/mini' target='_blank' rel="noreferrer">
+              <Icon fitted name='square full' /> Mini Crossword
+            </NYTLink>
           </p>
 
           <p>
-            <a href='https://www.nytimes.com/puzzles/leaderboards' target='_blank' rel="noreferrer">
+            <NYTLink href='https://www.nytimes.com/puzzles/leaderboards' target='_blank' rel="noreferrer">
               <Icon fitted name='trophy' /> Leaderboard
-            </a>
+            </NYTLink>
           </p>
         </section>
       </div>

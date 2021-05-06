@@ -59,3 +59,7 @@
 footer {
   background-color: var(--nyt-off-white);
 }
+
+a {
+  color: var(--nyt-black);
+}
