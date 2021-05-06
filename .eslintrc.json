@@ -23,6 +23,7 @@
         "no-unused-expressions": "warn",
         "no-unused-vars": "warn",
         "object-curly-spacing": ["error", "always"],
-        "max-len": "off"
+        "max-len": "off",
+        "operator-linebreak": ["error", "before"]
     }
 }

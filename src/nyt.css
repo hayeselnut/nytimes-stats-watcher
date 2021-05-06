@@ -1,0 +1,50 @@
+/* COLOURS */
+:root {
+  --nyt-blue: #4d88f9;
+  --nyt-dark-blue: #2860d8;
+  --nyt-darker-blue: #183167;
+  --nyt-teal: #00a2b3;
+  --nyt-green: #b5e352;
+  --nyt-light-green: #54E984;
+  --nyt-dark-green: #47A590;
+  --nyt-yellow: #f7da21;
+  --nyt-orange: #fb9b00;
+  --nyt-red: #e05c56;
+  --nyt-light-red: #EFADAA;
+  --nyt-dark-red: #E13246;
+  --nyt-white: #ffffff;
+  --nyt-light-grey: #cccccc;
+  --nyt-grey: #959595;
+  --nyt-dark-grey: #333333;
+  --nyt-black: #000000;
+}
+
+/* FONTS */
+@font-face {
+  font-family: 'Franklin';
+  src: url('./assets/fonts/FranklinLight.otf') format('opentype'),
+       url('./assets/fonts/FranklinLight.woff') format('woff');
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Franklin';
+  src: url('./assets/fonts/FranklinGothic.otf') format('opentype'),
+       url('./assets/fonts/FranklinGothic.woff') format('woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Chomsky';
+  src: url('./assets/fonts/Chomsky.otf') format('opentype'),
+       url('./assets/fonts/Chomsky.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Karnak Condensed';
+  src: url('./assets/fonts/KarnakPro-CondensedBlack.otf') format('opentype');
+}
+
+* {
+  font-family: 'Franklin', cursive;
+  font-weight: bold;
+}

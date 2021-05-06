@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, Grid } from 'semantic-ui-react';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -25,17 +25,22 @@ const App = () => {
     const snapshot = await db.collection('leaderboards').get();
 
     const newStats = {};
-    let newUsers = [];
+    let allUsers = [];
     snapshot.forEach((doc) => {
       const data = doc.data();
       newStats[doc.id] = data;
-      newUsers = [...newUsers, ...Object.keys(data)];
+      allUsers = [...allUsers, ...Object.keys(data)];
+    });
+    const unionUsers = [...new Set(allUsers)];
+    const newUsers = unionUsers.sort((a, b) => {
+      return a.toLowerCase().localeCompare(b.toLowerCase());
     });
 
     console.log(newUsers);
 
     setStats(newStats);
-    setUsers([...new Set(newUsers)]);
+    setUsers(newUsers);
+    setSelectedUsers(newUsers);
     setLoading(false);
   }, []);
 
@@ -46,9 +51,14 @@ const App = () => {
       </header>
       <main>
         <Container>
-          {loading ? 'still loading...' : 'done'}
-          <UserSelector users={users} selectedUsers={selectedUsers} setSelectedUsers={setSelectedUsers} />
-          <LeaderboardStatsGraph selectedUsers={selectedUsers} />
+          <Grid columns='equal'>
+            <Grid.Column width={4}>
+              <UserSelector users={users} selectedUsers={selectedUsers} setSelectedUsers={setSelectedUsers} />
+            </Grid.Column>
+            <Grid.Column>
+              <LeaderboardStatsGraph stats={stats} selectedUsers={selectedUsers} />
+            </Grid.Column>
+          </Grid>
         </Container>
       </main>
     </>
