@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container, Grid, Segment } from 'semantic-ui-react';
 
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -7,6 +7,8 @@ import FirebaseConfig from './assets/firebaseConfig.json';
 
 import LeaderboardStatsGraph from './components/leaderboard-stats-graph';
 import UserSelector from './components/user-selector';
+import NYTHeader from './components/imitations/nyt-header';
+import NYTContainer from './components/imitations/nyt-container';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -45,23 +47,21 @@ const App = () => {
   }, []);
 
   return (
-    <>
-      <header>
-        New York Times Stats Watcher 👀
-      </header>
-      <main>
-        <Container>
-          <Grid columns='equal'>
-            <Grid.Column width={4}>
-              <UserSelector users={users} selectedUsers={selectedUsers} setSelectedUsers={setSelectedUsers} />
-            </Grid.Column>
-            <Grid.Column>
+    <div style={{ borderTop: '1px solid var(--nyt-light-grey)' }} >
+      <NYTContainer>
+        <Grid columns='equal'>
+          <Grid.Column width={4}>
+            <NYTHeader level='h3' content='Usernames' />
+            <UserSelector users={users} selectedUsers={selectedUsers} setSelectedUsers={setSelectedUsers} />
+          </Grid.Column>
+          <Grid.Column>
+            <Segment>
               <LeaderboardStatsGraph stats={stats} selectedUsers={selectedUsers} />
-            </Grid.Column>
-          </Grid>
-        </Container>
-      </main>
-    </>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+      </NYTContainer>
+    </div>
   );
 };
 

@@ -1,19 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import AppHeader from './AppHeader';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import AppFooter from './AppFooter';
+
 
 import 'semantic-ui-css/semantic.min.css';
 import './nyt.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <header>
+      <AppHeader />
+    </header>
+    <main>
+      <App />
+    </main>
+    <footer>
+      <AppFooter />
+    </footer>
   </React.StrictMode>,
   document.getElementById('root'),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

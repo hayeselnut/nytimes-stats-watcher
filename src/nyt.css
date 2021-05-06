@@ -13,6 +13,7 @@
   --nyt-light-red: #EFADAA;
   --nyt-dark-red: #E13246;
   --nyt-white: #ffffff;
+  --nyt-off-white: #FAFAFA;
   --nyt-light-grey: #cccccc;
   --nyt-grey: #959595;
   --nyt-dark-grey: #333333;
@@ -40,11 +41,21 @@
 }
 
 @font-face {
-  font-family: 'Karnak Condensed';
+  font-family: 'Karnak';
+  src: url('./assets/fonts/KarnakPro-Black.otf') format('opentype');
+  font-stretch: normal;
+}
+@font-face {
+  font-family: 'Karnak';
   src: url('./assets/fonts/KarnakPro-CondensedBlack.otf') format('opentype');
+  font-stretch: condensed;
 }
 
 * {
-  font-family: 'Franklin', cursive;
-  font-weight: bold;
+  font-family: 'Franklin', sans-serif;
+  font-weight: normal;
+}
+
+footer {
+  background-color: var(--nyt-off-white);
 }
