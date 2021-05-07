@@ -6,6 +6,9 @@ import { Line } from 'react-chartjs-2';
 const LeaderboardStatsGraph = (props) => {
   const { stats, users, selectedUsers } = props;
 
+  const [subMinute, setSubMinute] = useState(true);
+  const [dateRange, setDateRange] = useState(7);
+
   const data = {
     labels: Object.keys(stats),
     datasets: selectedUsers.map((username) => {
@@ -25,6 +28,9 @@ const LeaderboardStatsGraph = (props) => {
       yAxes: [{
         display: true,
         ticks: {
+          // TODO also draw lines when missing data
+          // TODO: make max 60 an option
+          max: 60,
           beginAtZero: true,
         },
         scaleLabel: {
@@ -47,7 +53,7 @@ const LeaderboardStatsGraph = (props) => {
       <Line
         data={data}
         options={options}
-        style={{ height: '80vh' }}
+        style={{ height: '60vh' }}
       />
     </>
   );

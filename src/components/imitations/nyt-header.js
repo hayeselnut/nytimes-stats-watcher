@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Header } from 'semantic-ui-react';
 
-import '../../nyt.css';
+import { NYTColours } from './nyt-colours';
 
 const styles = {
   h1: {
@@ -25,6 +25,11 @@ const styles = {
     fontWeight: 'bold',
   },
   h4: {
+    fontFamily: 'Stymie',
+    fontSize: '1.125rem',
+    color: NYTColours.white,
+  },
+  h5: {
     fontFamily: 'Franklin',
     fontWeight: 'bold',
     textTransform: 'uppercase',
@@ -36,16 +41,21 @@ const styles = {
 };
 
 const NYTHeader = (props) => {
-  const { level, content } = props;
+  const { level, content, textAlign } = props;
 
   return (
-    <Header as={level} style={styles[level]} content={content} />
+    <Header as={level} style={styles[level]} content={content} textAlign={textAlign || 'left'}>
+      {props.children}
+    </Header>
   );
 };
 
 NYTHeader.propTypes = {
+  children: PropTypes.node,
   level: PropTypes.string,
   content: PropTypes.string,
+  textAlign: PropTypes.string,
+
 };
 
 export default NYTHeader;

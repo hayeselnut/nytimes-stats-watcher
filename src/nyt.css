@@ -51,6 +51,11 @@
   font-stretch: condensed;
 }
 
+@font-face {
+  font-family: 'Stymie';
+  src: url('./assets/fonts/OPTIStymie-Bold.otf') format('opentype');
+}
+
 * {
   font-family: 'Franklin', sans-serif;
   font-weight: normal;
@@ -58,8 +63,4 @@
 
 footer {
   background-color: var(--nyt-off-white);
-}
-
-a {
-  color: var(--nyt-black);
 }

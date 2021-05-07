@@ -28,7 +28,7 @@ const AppFooter = () => {
     <NYTContainer>
       <div style={style}>
         <section style={{ flex: 2 }}>
-          <NYTHeader level='h4' content='About' />
+          <NYTHeader level='h5' content='About' />
           <p>
             I{'\''}m too broke to pay for the official <NYTLink href='https://www.nytimes.com/puzzles/stats' target='_blank' rel="noreferrer">Statistics</NYTLink> so I made my own.
           </p>
@@ -40,7 +40,7 @@ const AppFooter = () => {
         </section>
 
         <section style={{ flex: 1, marginLeft: '4rem' }}>
-          <NYTHeader level='h4' content='Links' />
+          <NYTHeader level='h5' content='Links' />
           <p>
             <NYTLink href='https://github.com/hayeselnut/nytimes-stats-watcher' target='_blank' rel="noreferrer">
               <Icon fitted name='github' /> GitHub

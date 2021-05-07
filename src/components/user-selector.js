@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Checkbox } from 'semantic-ui-react';
+import { NYTColours } from './imitations/nyt-colours';
 
-const style = {
+const style = (selectedUsernames, user) => ({
   marginBottom: '1rem',
   display: 'block',
-};
+  height: '2rem',
+  borderRadius: '7px',
+  fontWeight: 'bold',
+  backgroundColor: selectedUsernames.includes(user.name) ? user.colour : NYTColours.lightGrey,
+});
 
 const UserSelector = (props) => {
   const { users, selectedUsernames, setSelectedUsernames } = props;
@@ -28,7 +33,7 @@ const UserSelector = (props) => {
           value={user.name}
           checked={selectedUsernames.includes(user.name)}
           onClick={handleClick}
-          style={{ ...style, backgroundColor: user.colour }}
+          style={style(selectedUsernames, user)}
         />
       ))}
     </>
