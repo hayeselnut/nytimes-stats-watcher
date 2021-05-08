@@ -5,6 +5,7 @@ import AppHeader from './AppHeader';
 import App from './App';
 import AppFooter from './AppFooter';
 
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 import './nyt.css';
@@ -15,7 +16,11 @@ ReactDOM.render(
       <AppHeader />
     </header>
     <main>
-      <App />
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' component={App} />
+        </Switch>
+      </BrowserRouter>
     </main>
     <footer>
       <AppFooter />

@@ -10,8 +10,8 @@ import UserSelector from './components/user-selector';
 import NYTHeader from './components/imitations/nyt-header';
 import NYTContainer from './components/imitations/nyt-container';
 import { NYTColours, NYTThemeColours } from './components/imitations/nyt-colours';
-import NYTCard from './components/imitations/nyt-card';
 import PersonalStats from './components/personalStats';
+import { getUsernamesInURL } from './helpers/url-helpers';
 
 const getSnapshot = async () => {
   if (firebase.apps.length === 0) {
@@ -63,7 +63,7 @@ const App = () => {
 
     const newUsers = getNewUsers(newStats);
     setUsers(newUsers);
-    setSelectedUsernames(newUsers.map((user) => user.name));
+    setSelectedUsernames(getUsernamesInURL(newUsers));
 
     setLoading(false);
   }, []);

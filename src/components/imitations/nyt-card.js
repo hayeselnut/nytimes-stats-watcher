@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Container, Header, Icon, Segment } from 'semantic-ui-react';
+import { Icon, Segment } from 'semantic-ui-react';
 import { NYTColours } from './nyt-colours';
 import NYTHeader from './nyt-header';
 
@@ -22,7 +22,7 @@ const NYTCard = (props) => {
 
   return (
     <Segment style={style}>
-      <Icon name={icon} size='huge'/>
+      <Icon name={icon} size='huge' color='black'/>
       <NYTHeader level='h2' content={header}/>
       <span style={{ fontSize: '1.125rem' }}>
         {content || ''}

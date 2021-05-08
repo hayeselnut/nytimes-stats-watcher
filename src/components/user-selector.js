@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Checkbox } from 'semantic-ui-react';
 import { NYTColours } from './imitations/nyt-colours';
+import { deleteUsernamesInURL, getUsernamesInURL, setUsernamesInURL } from '../helpers/url-helpers';
 
 const style = (selectedUsernames, user) => ({
   marginBottom: '1rem',
@@ -20,6 +21,12 @@ const UserSelector = (props) => {
     const newSelectedUsernames = selectedUsernames.includes(value)
       ? selectedUsernames.filter((username) => username !== value)
       : [...selectedUsernames, value];
+
+    if (newSelectedUsernames.length > 0) {
+      setUsernamesInURL(newSelectedUsernames);
+    } else {
+      deleteUsernamesInURL();
+    }
 
     setSelectedUsernames(newSelectedUsernames);
   };
