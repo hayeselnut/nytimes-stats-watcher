@@ -2,59 +2,46 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Line } from 'react-chartjs-2';
+import { Button } from 'semantic-ui-react';
+
+import TimeGraph from './graphs/time-graph';
+import PositionGraph from './graphs/position-graph';
+import { NYTColours } from './imitations/nyt-colours';
+
 
 const LeaderboardStatsGraph = (props) => {
   const { stats, users, selectedUsers } = props;
 
-  const [subMinute, setSubMinute] = useState(true);
+  const [subMinute, setSubMinute] = useState(false);
   const [dateRange, setDateRange] = useState(7);
 
-  const data = {
-    labels: Object.keys(stats),
-    datasets: selectedUsers.map((username) => {
-      const userColour = users.filter((user) => user.name === username)[0].colour;
-
-      return {
-        label: username,
-        data: Object.keys(stats).map((day) => stats[day][username]),
-        backgroundColor: userColour,
-        borderColor: `${userColour}80`,
-      };
-    }),
-  };
-
-  const options = {
-    scales: {
-      yAxes: [{
-        display: true,
-        ticks: {
-          // TODO also draw lines when missing data
-          // TODO: make max 60 an option
-          max: 60,
-          beginAtZero: true,
-        },
-        scaleLabel: {
-          display: true,
-          // TODO: not working :(
-          labelString: 'seconds',
-        },
-      }],
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    maintainAspectRatio: false,
-  };
+  const [graphContent, setGraphContent] = useState('time');
 
   return (
     <>
-      <Line
-        data={data}
-        options={options}
-        style={{ height: '60vh' }}
-      />
+      <Button.Group >
+        <Button
+          content='By Time'
+          style={{ backgroundColor: graphContent === 'time' ? NYTColours.blue : NYTColours.lightGrey }}
+          onClick={() => setGraphContent('time')}
+        />
+        <Button
+          content='By Position'
+          style={{ backgroundColor: graphContent === 'position' ? NYTColours.blue : NYTColours.lightGrey }}
+          onClick={() => setGraphContent('position')}
+        />
+      </Button.Group>
+
+      <br/>
+
+      {graphContent === 'time' && <TimeGraph stats={stats} users={users} selectedUsers={selectedUsers}/>}
+      {graphContent === 'position' && <PositionGraph stats={stats} users={users} selectedUsers={selectedUsers}/>}
+
+      <Button.Group>
+        <Button content='Past 7 days' />
+        <Button content='Past month' />
+        <Button content='All time' />
+      </Button.Group>
     </>
   );
 };
