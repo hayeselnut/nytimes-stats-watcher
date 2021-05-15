@@ -64,3 +64,7 @@
 footer {
   background-color: var(--nyt-off-white);
 }
+
+.usernameButton:hover {
+  box-shadow: 0 1px 0 0;
+}
