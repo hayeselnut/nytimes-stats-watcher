@@ -1,10 +1,8 @@
 import React from 'react';
-import { Container, Grid, Icon, Image, Segment } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import NYTContainer from './components/imitations/nyt-container';
 
 import NYTHeader from './components/imitations/nyt-header';
-
-import MiniCrosswordLogo from './assets/mini.svg';
 
 import './nyt.css';
 import NYTLink from './components/imitations/nyt-link';
@@ -12,15 +10,6 @@ import NYTLink from './components/imitations/nyt-link';
 const style = {
   display: 'flex',
   flexWrap: 'wrap',
-};
-
-const iconStyle = {
-  backgroundSize: 'contain',
-  backgroundRepeat: 'no-repeat',
-  display: 'inline-block',
-  minHeight: '20px',
-  minWidth: '20px',
-  marginRight: '8px',
 };
 
 const AppFooter = () => {

@@ -5,11 +5,7 @@ import { Button } from 'semantic-ui-react';
 import { NYTColours, darken } from './imitations/nyt-colours';
 import { deleteUsernamesInURL, setUsernamesInURL } from '../helpers/url-helpers';
 
-import styled, { css } from 'styled-components';
-
 const style = (selectedUsernames, user) => {
-  // const isActive = this.context.router.isActive(this.props.to, true);
-
   return {
     display: 'block',
     marginBottom: '1rem',
@@ -30,7 +26,7 @@ const UserSelector = (props) => {
   const handleClick = (e, { value }) => {
     const newSelectedUsernames = selectedUsernames.includes(value)
       ? selectedUsernames.filter((username) => username !== value)
-      : [...selectedUsernames, value].sort();
+      : [...selectedUsernames, value].sort((a, b) => a.localeCompare(b, 'en', { 'sensitivity': 'base' }));
 
     if (newSelectedUsernames.length > 0) {
       setUsernamesInURL(newSelectedUsernames);

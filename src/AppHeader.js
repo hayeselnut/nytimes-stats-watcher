@@ -1,6 +1,4 @@
-import React,
-{ useEffect, useState } from 'react';
-import { Container, Grid, Segment } from 'semantic-ui-react';
+import React from 'react';
 
 import NYTHeader from './components/imitations/nyt-header';
 

@@ -25,7 +25,8 @@ const TimeGraph = (props) => {
         backgroundColor: userColour,
         borderColor: `${userColour}A0`,
         spanGaps: true,
-        lineTension: 0.20,
+        cubicInterpolationMode: 'monotone',
+        lineTension: 0.40,
       };
     }),
   };
@@ -51,6 +52,7 @@ const TimeGraph = (props) => {
     scales: {
       y: {
         display: true,
+        suggestedMax: 120,
         max: subminute ? 60 : null,
         title: {
           display: true,
