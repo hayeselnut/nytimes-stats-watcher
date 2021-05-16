@@ -30,7 +30,7 @@ const UserSelector = (props) => {
   const handleClick = (e, { value }) => {
     const newSelectedUsernames = selectedUsernames.includes(value)
       ? selectedUsernames.filter((username) => username !== value)
-      : [...selectedUsernames, value];
+      : [...selectedUsernames, value].sort();
 
     if (newSelectedUsernames.length > 0) {
       setUsernamesInURL(newSelectedUsernames);

@@ -3,44 +3,85 @@ import PropTypes from 'prop-types';
 
 import { Line } from 'react-chartjs-2';
 import { Button } from 'semantic-ui-react';
+import { prettyPrint, toMinsSecs } from '../../helpers/date-helpers';
+
+const style = {
+  family: 'Franklin, sans-serif',
+  size: 14,
+};
 
 const TimeGraph = (props) => {
   const { stats, users, selectedUsers } = props;
+  const [subminute, setSubminute] = useState(false);
 
   const data = {
-    labels: Object.keys(stats),
+    labels: Object.keys(stats).map((date) => prettyPrint(date)),
     datasets: selectedUsers.map((username) => {
       const userColour = users.filter((user) => user.name === username)[0].colour;
 
       return {
         label: username,
-        data: Object.keys(stats).map((day) => stats[day][username]),
+        data: Object.values(stats).map((day) => day[username]),
         backgroundColor: userColour,
-        borderColor: `${userColour}80`,
+        borderColor: `${userColour}A0`,
+        spanGaps: true,
+        lineTension: 0.20,
       };
     }),
   };
 
+  let delayed;
   const options = {
+    animation: {
+      onComplete: () => {
+        delayed = true;
+      },
+      delay: (context) => {
+        let delay = 0;
+        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+          delay = context.dataIndex * 50 + context.datasetIndex * 50;
+        }
+        return delay;
+      },
+    },
+    interaction: {
+      intersect: false,
+      mode: 'index',
+    },
     scales: {
-      yAxes: [{
+      y: {
         display: true,
-        ticks: {
-          // TODO also draw lines when missing data
-          // TODO: make max 60 an option
-          max: 60,
-          beginAtZero: true,
-        },
-        scaleLabel: {
+        max: subminute ? 60 : null,
+        title: {
           display: true,
-          // TODO: not working :(
-          labelString: 'seconds',
+          text: 'Time (secs)',
         },
-      }],
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+      },
     },
     plugins: {
       legend: {
         display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const username = context.dataset.label;
+            const time = context.parsed.y;
+            return `${username} - ${toMinsSecs(time)}`;
+          },
+        },
+        itemSort: (a, b) => {
+          return a.dataset.label.toLowerCase()
+            .localeCompare(b.dataset.label.toLowerCase());
+        },
+        titleFont: style,
+        bodyFont: style,
+        fotterFont: style,
       },
     },
     maintainAspectRatio: false,
@@ -49,8 +90,14 @@ const TimeGraph = (props) => {
   return (
     <>
       <Button.Group>
-        <Button content='Subminute' />
-        <Button content='All' />
+        <Button
+          content='Subminute'
+          onClick={() => setSubminute(true)}
+        />
+        <Button
+          content='All'
+          onClick={() => setSubminute(false)}
+        />
       </Button.Group>
 
       <div>

@@ -10,16 +10,16 @@ firebase_admin.initialize_app(cred, {
 
 db = firestore.client()
 
-doc_ref = db.collection('leaderboards').document('2021-05-09')
+doc_ref = db.collection('leaderboards').document('2021-05-15')
 doc_ref.set({
-    'al6155': 43,
-    'jj': 69,
-    'Adam :))': 61,
-    # 'emilyyyyyyyyy': ,
-    'swagchamp': 49,
-    'Pravin': 45,
-    'xlpotatoez': 55,
-    'taro': 229,
-    'Hayeselnut': 43,
+    'al6155': 40,
+    'jj': 4*60+4,
+    'Adam :))': 90,
+    'emilyyyyyyyyy': 107,
+    'swagchamp': 52,
+    'Pravin': 106,
+    # 'xlpotatoez': ,
+    'taro': 4*60+37,
+    'Hayeselnut': 5*60+26,
     # 'Daph': ,
 })
