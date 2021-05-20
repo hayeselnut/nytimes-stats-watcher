@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 import { NYTColours, darken } from './imitations/nyt-colours';
 import { deleteUsernamesInURL, setUsernamesInURL } from '../helpers/url-helpers';
+import NYTHeader from './imitations/nyt-header';
 
 const style = (selectedUsernames, user) => {
   return {
@@ -38,18 +39,17 @@ const UserSelector = (props) => {
   };
 
   return (
-    <>
+    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
       {users.map((user, i) => (
         <Button
           key={i}
           content={user.name}
           value={user.name}
           onClick={handleClick}
-          fluid
           style={style(selectedUsernames, user)}
         />
       ))}
-    </>
+    </div>
   );
 };
 

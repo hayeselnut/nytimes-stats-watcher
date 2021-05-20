@@ -73,16 +73,15 @@ const App = () => {
       <Grid>
         <Grid.Row>
           <NYTContainer>
-            <Grid columns='equal'>
-              <Grid.Column width={4}>
-                <NYTHeader level='h3' content='Usernames' />
+            <Grid>
+              <Grid.Row>
                 <UserSelector users={users} selectedUsernames={selectedUsernames} setSelectedUsernames={setSelectedUsernames} />
-              </Grid.Column>
-              <Grid.Column>
-                <Segment>
+              </Grid.Row>
+              <Grid.Row>
+                <Segment fluid>
                   <LeaderboardStatsGraph stats={stats} users={users} selectedUsers={selectedUsernames} />
                 </Segment>
-              </Grid.Column>
+              </Grid.Row>
             </Grid>
           </NYTContainer>
         </Grid.Row>

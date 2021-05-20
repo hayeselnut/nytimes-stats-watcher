@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Color from 'color';
 
 import { Pie } from 'react-chartjs-2';
+import NYTHeader from '../imitations/nyt-header';
 
 const style = {
   family: 'Franklin, sans-serif',
@@ -51,7 +52,7 @@ const PositionGraph = (props) => {
     return null;
   };
 
-  const getPositionSummary = (stats, username) => {
+  const getPositionSummary = (username) => {
     const positions = Object.values(stats).map((day) => getPosition(day, username));
 
     const positionsSummary = [];
@@ -61,21 +62,26 @@ const PositionGraph = (props) => {
     return positionsSummary;
   };
 
-  const data = {
-    datasets: selectedUsers.map((username) => {
-      const userColour = users.filter((user) => user.name === username)[0].colour;
-      const positionSummary = getPositionSummary(stats, username);
-      return {
-        label: username,
-        data: positionSummary,
-        backgroundColor: `${userColour}`,
-        backgroundColor: positionSummary.map((_, index) => new Color(userColour).lighten(index / 25).hex()),
-        // borderColor: `${userColour}A0`,
-        // spanGaps: true,
-        // stepped: 'middle',
-      };
-    }),
+  const positionSummary = selectedUsers.reduce((summary, username) => ({
+    ...summary,
+    [username]: getPositionSummary(username),
+  }), {});
+
+  const getPositions = (index) => {
+    return {
+      label: ordinalSuffixOf(index + 1),
+      data: selectedUsers.map((username) => {
+        return positionSummary[username][index];
+      }),
+      backgroundColor: selectedUsers.map((username) => {
+        return users.filter((user) => user.name === username)[0].colour;
+      }),
+    };
   };
+
+  const getData = (index) => ({
+    datasets: [getPositions(index)],
+  });
 
   let delayed;
   const options = {
@@ -91,9 +97,6 @@ const PositionGraph = (props) => {
         return delay;
       },
     },
-    interaction: {
-      mode: 'dataset',
-    },
     plugins: {
       legend: {
         display: false,
@@ -104,12 +107,12 @@ const PositionGraph = (props) => {
             return context[0].dataset.label;
           },
           label: (context) => {
-            const rank = context.dataIndex + 1;
+            const username = selectedUsers[context.dataIndex];
             const quantity = context.parsed;
 
             if (quantity <= 0) return '';
 
-            return `${ordinalSuffixOf(rank)} ${occurence(quantity)}`;
+            return `${username}: ${occurence(quantity)}`;
           },
         },
         titleFont: style,
@@ -121,11 +124,27 @@ const PositionGraph = (props) => {
   };
 
   return (
-    <div>
-      <Pie
-        data={data}
-        options={options}
-      />
+    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div>
+          <Pie data={getData(0)} options={options} />
+        </div>
+        <NYTHeader level='h3' content={ordinalSuffixOf(1)}/>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div>
+          <Pie data={getData(1)} options={options} />
+        </div>
+        <NYTHeader level='h3' content={ordinalSuffixOf(2)}/>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div>
+          <Pie data={getData(2)} options={options} />
+        </div>
+        <NYTHeader level='h3' content={ordinalSuffixOf(3)}/>
+      </div>
     </div>
   );
 };

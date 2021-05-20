@@ -64,11 +64,11 @@ const TimeGraph = (props) => {
       },
     },
     yaxis: {
+      min: 0,
       max: subminute ? 60 : (max) => max,
       forceNiceScale: true,
       labels: {
         style: style,
-
       },
       title: {
         text: 'Time (secs)',
