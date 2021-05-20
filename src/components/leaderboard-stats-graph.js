@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Line } from 'react-chartjs-2';
 import { Button } from 'semantic-ui-react';
 
 import TimeGraph from './graphs/time-graph';

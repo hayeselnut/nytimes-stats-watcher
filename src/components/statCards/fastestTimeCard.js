@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import NYTCard from '../imitations/nyt-card';
+import { toMinsSecs } from '../../helpers/date-helpers';
 
 const FastestTimeCard = (props) => {
   const { stats, username } = props;
@@ -11,7 +12,7 @@ const FastestTimeCard = (props) => {
     .sort(([dayA, timesA], [dayB, timesB]) => timesA[username] - timesB[username]);
 
   const [fastestDay, fastestTime] = orderedByTime.length > 0
-    ? [orderedByTime[0][0], `${orderedByTime[0][1][username]} secs`]
+    ? [orderedByTime[0][0], toMinsSecs(orderedByTime[0][1][username])]
     : ['N/A', undefined];
 
   return (
