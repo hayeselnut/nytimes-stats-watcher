@@ -73,16 +73,10 @@ const App = () => {
       <Grid>
         <Grid.Row>
           <NYTContainer>
-            <Grid>
-              <Grid.Row>
-                <UserSelector users={users} selectedUsernames={selectedUsernames} setSelectedUsernames={setSelectedUsernames} />
-              </Grid.Row>
-              <Grid.Row>
-                <Segment fluid>
-                  <LeaderboardStatsGraph stats={stats} users={users} selectedUsers={selectedUsernames} />
-                </Segment>
-              </Grid.Row>
-            </Grid>
+            <UserSelector users={users} selectedUsernames={selectedUsernames} setSelectedUsernames={setSelectedUsernames} />
+            <Segment>
+              <LeaderboardStatsGraph stats={stats} users={users} selectedUsers={selectedUsernames} />
+            </Segment>
           </NYTContainer>
         </Grid.Row>
         <Grid.Row style={{ backgroundColor: NYTColours.blue }}>
