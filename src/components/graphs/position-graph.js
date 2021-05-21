@@ -125,6 +125,7 @@ const PositionGraph = (props) => {
       <Pie
         data={data}
         options={options}
+        style={{ height: '60vh' }}
       />
     </div>
   );
