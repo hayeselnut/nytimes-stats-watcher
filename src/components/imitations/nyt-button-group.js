@@ -35,22 +35,6 @@ const NYTButtonGroup = (props) => {
           />
         );
       })}
-      {/* <Button
-        content='By Time'
-        style={{
-          ...buttonStyle('time'),
-          borderRadius: '100px 0px 0px 100px',
-        }}
-        onClick={() => setState('time')}
-      />
-      <Button
-        content='By Position'
-        style={{
-          ...buttonStyle('position'),
-          borderRadius: '0px 100px 100px 0px',
-        }}
-        onClick={() => setState('position')}
-      /> */}
     </Button.Group>
   );
 };
