@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import { NYTColours } from './nyt-colours';
 
 const NYTButtonGroup = (props) => {
-  const { state, setState, buttons } = props;
+  const { state, setState } = props;
 
   const buttonStyle = (value, first, last) => ({
     width: 150,
