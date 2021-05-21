@@ -21,7 +21,7 @@ const NYTButtonGroup = (props) => {
   });
 
   return (
-    <Button.Group>
+    <Button.Group style={{ marginBottom: '1rem', marginTop: '1rem' }}>
       {props.children.map((child, i) => {
         const first = i === 0;
         const last = i === props.children.length - 1;
