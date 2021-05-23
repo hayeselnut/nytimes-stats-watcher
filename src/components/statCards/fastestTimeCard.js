@@ -11,15 +11,11 @@ const FastestTimeCard = (props) => {
     .filter(([day, times]) => username in times)
     .sort(([dayA, timesA], [dayB, timesB]) => timesA[username] - timesB[username]);
 
-  const [fastestDay, fastestTime] = orderedByTime.length > 0
+  const [, fastestTime] = orderedByTime.length > 0
     ? [orderedByTime[0][0], toMinsSecs(orderedByTime[0][1][username])]
     : ['N/A', undefined];
 
-  return (
-    <>
-      <NYTCard icon='stopwatch' header={fastestTime} subheader='Fastest time' />
-    </>
-  );
+  return <NYTCard emoji='⏱' header={fastestTime} subheader='Fastest time' />;
 };
 
 FastestTimeCard.propTypes = {

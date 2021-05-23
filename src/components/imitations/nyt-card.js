@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Segment } from 'semantic-ui-react';
+
+import { Segment } from 'semantic-ui-react';
+
 import { NYTColours } from './nyt-colours';
 import NYTHeader from './nyt-header';
 
@@ -18,31 +20,35 @@ const style = {
 };
 
 const NYTCard = (props) => {
-  const { icon, header, subheader, content } = props;
+  const { emoji, header, subheader, content } = props;
 
   return (
     <Segment style={style}>
-      <Icon name={icon} size='huge' color='black'/>
-      <NYTHeader level='h2' content={header}/>
-      <span style={{ fontSize: '1.125rem' }}>
-        {content || ''}
-      </span>
-
-      {subheader && (
-        <>
-          <hr style={{ lineHeight: 1.5, background: NYTColours.lightGrey, border: 0, height: '1px', width: '80%' }}/>
-          <span style={{ textTransform: 'uppercase', color: NYTColours.grey, fontSize: '1rem', lineHeight: '1.1375rem' }}>
-            {subheader}
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flexGrow: 1 }} >
+          <span style={{ fontSize: '3rem', display: 'block', margin: '4rem 0 1rem' }}>
+            {emoji}
           </span>
-        </>
-      )}
+
+          <NYTHeader level='h2' content={header}/>
+
+          <span style={{ fontSize: '1.125rem', display: 'block' }}>
+            {content || ''}
+          </span>
+        </div>
+
+        <hr style={{ lineHeight: 1.5, background: NYTColours.lightGrey, border: 0, height: '1px', width: '80%' }}/>
+        <span style={{ textTransform: 'uppercase', color: NYTColours.grey, fontSize: '1rem', lineHeight: '1.1375rem', marginBottom: '1rem' }}>
+          {subheader}
+        </span>
+      </div>
     </Segment>
   );
 };
 
 NYTCard.propTypes = {
   children: PropTypes.node,
-  icon: PropTypes.string,
+  emoji: PropTypes.string,
   header: PropTypes.string,
   subheader: PropTypes.string,
   content: PropTypes.string,

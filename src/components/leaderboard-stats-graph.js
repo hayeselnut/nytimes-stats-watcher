@@ -16,7 +16,6 @@ const timeButtons = [
 const graphTypeButtons = [
   { content: 'By Elo', value: 'elo' },
   { content: 'By Time', value: 'time' },
-  { content: 'By Position', value: 'position' },
 ];
 
 const getStatsInDateRange = (stats, dateRange) => {
@@ -41,51 +40,14 @@ const getStatsInDateRange = (stats, dateRange) => {
   return stats;
 };
 
-const calculateElo = (times) => {
-  const sum = times.reduce((a, b) => a + b, 0);
-  return 100 / sum;
-};
-
-const getElo = (stats, users) => {
-  const period = 7; // Use last n games to calculate
-  const elo = {};
-  const userTimeCache = users.reduce((cache, user) => ({ ...cache, [user.name]: [] }), {});
-
-  console.log('time cahce', userTimeCache);
-
-  Object.entries(stats).forEach(([date, dayStats]) => {
-    Object.entries(dayStats).forEach(([username, seconds]) => {
-      if (userTimeCache[username]?.length >= period) {
-        userTimeCache[username]?.shift();
-      }
-
-      userTimeCache[username]?.push(seconds);
-    });
-
-    const dayElo = {};
-    users.forEach((user) => {
-      if (userTimeCache[user.name]?.length >= period) {
-        dayElo[user.name] = calculateElo(userTimeCache[user.name]);
-      }
-    });
-
-    if (Object.keys(dayElo).length > 0) {
-      elo[date] = dayElo;
-    }
-  });
-
-  return elo;
-};
-
 const LeaderboardStatsGraph = (props) => {
-  const { stats, users, selectedUsers } = props;
+  const { stats, elo, users, selectedUsers } = props;
 
   const [dateRange, setDateRange] = useState('week');
   const [graphContent, setGraphContent] = useState('elo');
 
   const statsToDisplay = getStatsInDateRange(stats, dateRange);
 
-  const elo = getElo(stats, users);
   const eloToDisplay = getStatsInDateRange(elo, dateRange);
 
   return (
@@ -107,6 +69,7 @@ const LeaderboardStatsGraph = (props) => {
 
 LeaderboardStatsGraph.propTypes = {
   stats: PropTypes.object,
+  elo: PropTypes.object,
   users: PropTypes.array,
   selectedUsers: PropTypes.array,
 };

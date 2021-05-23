@@ -70,13 +70,6 @@ const EloGraph = (props) => {
         display: false,
       },
       tooltip: {
-        // callbacks: {
-        //   label: (context) => {
-        //     const username = context.dataset.label;
-        //     const time = context.parsed.y;
-        //     return `${username} - ${toMinsSecs(time)}`;
-        //   },
-        // },
         itemSort: (a, b) => b.dataset.data[b.dataIndex] - a.dataset.data[a.dataIndex],
         titleFont: style,
         bodyFont: style,

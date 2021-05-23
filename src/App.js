@@ -8,12 +8,13 @@ import { NYTColours } from './components/imitations/nyt-colours';
 import PersonalStats from './components/personalStats';
 
 import { getUsernamesInURL } from './helpers/url-helpers';
-import { getNewStats, getNewUsers } from './helpers/firebase-helpers';
+import { getNewStats, getNewUsers, getElo } from './helpers/stats-helpers';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
 
   const [stats, setStats] = useState({});
+  const [elo, setElo] = useState({});
   const [users, setUsers] = useState([]);
   const [selectedUsernames, setSelectedUsernames] = useState([]);
 
@@ -24,6 +25,7 @@ const App = () => {
     const newUsers = getNewUsers(newStats);
     setUsers(newUsers);
     setSelectedUsernames(getUsernamesInURL(newUsers));
+    setElo(getElo(newStats, newUsers));
 
     setLoading(false);
   }, []);
@@ -35,12 +37,12 @@ const App = () => {
           <NYTContainer>
             <UserSelector users={users} selectedUsernames={selectedUsernames} setSelectedUsernames={setSelectedUsernames} />
 
-            <LeaderboardStatsGraph stats={stats} users={users} selectedUsers={selectedUsernames} />
+            <LeaderboardStatsGraph stats={stats} elo={elo} users={users} selectedUsers={selectedUsernames} />
           </NYTContainer>
         </Grid.Row>
         <Grid.Row style={{ backgroundColor: NYTColours.blue }}>
           <NYTContainer>
-            <PersonalStats users={users} stats={stats} />
+            <PersonalStats users={users} stats={stats} elo={elo}/>
           </NYTContainer>
         </Grid.Row>
       </Grid>

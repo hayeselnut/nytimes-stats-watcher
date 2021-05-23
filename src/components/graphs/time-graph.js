@@ -83,10 +83,7 @@ const TimeGraph = (props) => {
             return `${username} - ${toMinsSecs(time)}`;
           },
         },
-        itemSort: (a, b) => {
-          return a.dataset.label.toLowerCase()
-            .localeCompare(b.dataset.label.toLowerCase());
-        },
+        itemSort: (a, b) => b.dataset.data[b.dataIndex] - a.dataset.data[a.dataIndex],
         titleFont: style,
         bodyFont: style,
         fotterFont: style,
