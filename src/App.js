@@ -1,54 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Segment } from 'semantic-ui-react';
 
-import firebase from 'firebase';
-import 'firebase/firestore';
-import FirebaseConfig from './assets/firebaseConfig.json';
-
 import LeaderboardStatsGraph from './components/leaderboard-stats-graph';
 import UserSelector from './components/user-selector';
-import NYTHeader from './components/imitations/nyt-header';
 import NYTContainer from './components/imitations/nyt-container';
-import { NYTColours, NYTThemeColours } from './components/imitations/nyt-colours';
+import { NYTColours } from './components/imitations/nyt-colours';
 import PersonalStats from './components/personalStats';
+
 import { getUsernamesInURL } from './helpers/url-helpers';
-
-const getSnapshot = async () => {
-  if (firebase.apps.length === 0) {
-    firebase.initializeApp(FirebaseConfig);
-  }
-
-  const db = firebase.firestore();
-  return await db.collection('leaderboards').get();
-};
-
-const getNewStats = async () => {
-  const snapshot = await getSnapshot();
-
-  const newStats = {};
-  snapshot.forEach((doc) => {
-    newStats[doc.id] = doc.data();
-  });
-
-  return newStats;
-};
-
-const getNewUsers = (newStats) => {
-  const colours = Object.values(NYTThemeColours);
-  let allUsernames = [];
-
-  Object.values(newStats).map((day) => {
-    allUsernames = [...allUsernames, ...Object.keys(day)];
-  });
-  const unionUsernames = [...new Set(allUsernames)];
-  const newUsernames = unionUsernames.sort((a, b) => a.localeCompare(b, 'en', { 'sensitivity': 'base' }));
-
-  return newUsernames.map((username, index) => ({
-    name: username,
-    colour: colours[index % colours.length],
-  }));
-};
-
+import { getNewStats, getNewUsers } from './helpers/firebase-helpers';
+import NYTSegment from './components/imitations/nyt-segment';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -74,9 +35,10 @@ const App = () => {
         <Grid.Row>
           <NYTContainer>
             <UserSelector users={users} selectedUsernames={selectedUsernames} setSelectedUsernames={setSelectedUsernames} />
-            <Segment>
+
+            <NYTSegment>
               <LeaderboardStatsGraph stats={stats} users={users} selectedUsers={selectedUsernames} />
-            </Segment>
+            </NYTSegment>
           </NYTContainer>
         </Grid.Row>
         <Grid.Row style={{ backgroundColor: NYTColours.blue }}>

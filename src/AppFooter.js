@@ -26,6 +26,11 @@ const AppFooter = () => {
             A Python script scrapes the <NYTLink href='https://www.nytimes.com/puzzles/leaderboards' target='_blank' rel="noreferrer">Leaderboard</NYTLink> everyday
             and stores each player{'\''}s times into a Google Firestore database.
           </p>
+
+          <p>
+            Charts are rendered using the <code>chart.js</code> library and components
+            have been styled to emulate the official NYT games pages.
+          </p>
         </section>
 
         <section style={{ flex: 1, marginLeft: '4rem' }}>
