@@ -4,7 +4,12 @@ import { Button } from 'semantic-ui-react';
 import { NYTColours } from './nyt-colours';
 
 const NYTButtonGroup = (props) => {
-  const { state, setState } = props;
+  const { state, setState, buttons, vertical } = props;
+
+  const buttonGroupStyle = {
+    margin: `1rem ${vertical ? '-8rem' : '0'}`,
+    transform: vertical ? 'rotate(-90deg)' : 'none',
+  };
 
   const buttonStyle = (value, first, last) => ({
     width: 150,
@@ -21,17 +26,17 @@ const NYTButtonGroup = (props) => {
   });
 
   return (
-    <Button.Group style={{ marginBottom: '1rem', marginTop: '1rem' }}>
-      {props.children.map((child, i) => {
+    <Button.Group style={buttonGroupStyle}>
+      {buttons.map(({ content, value }, i) => {
         const first = i === 0;
-        const last = i === props.children.length - 1;
+        const last = i === buttons.length - 1;
 
         return (
           <Button
             key={i}
-            content={child.props.content}
-            onClick={() => setState(child.props.value)}
-            style={buttonStyle(child.props.value, first, last)}
+            content={content}
+            onClick={() => setState(value)}
+            style={buttonStyle(value, first, last)}
           />
         );
       })}
@@ -44,6 +49,7 @@ NYTButtonGroup.propTypes = {
   state: PropTypes.string,
   setState: PropTypes.func,
   buttons: PropTypes.object,
+  vertical: PropTypes.bool,
 };
 
 export default NYTButtonGroup;

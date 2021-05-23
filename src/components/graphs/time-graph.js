@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Line } from 'react-chartjs-2';
-import { Button } from 'semantic-ui-react';
 import { prettyPrint, toMinsSecs } from '../../helpers/date-helpers';
+import NYTButtonGroup from '../imitations/nyt-button-group';
 
 const style = {
   family: 'Franklin, sans-serif',
   size: 14,
 };
+
+const subminuteButtons = [
+  { content: 'Subminute', value: true },
+  { content: 'All', value: false },
+];
 
 const TimeGraph = (props) => {
   const { stats, users, selectedUsers } = props;
@@ -91,23 +96,16 @@ const TimeGraph = (props) => {
 
   return (
     <>
-      <Button.Group>
-        <Button
-          content='Subminute'
-          onClick={() => setSubminute(true)}
-        />
-        <Button
-          content='All'
-          onClick={() => setSubminute(false)}
-        />
-      </Button.Group>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} >
+        <NYTButtonGroup state={subminute} setState={setSubminute} buttons={subminuteButtons} vertical />
 
-      <div>
-        <Line
-          data={data}
-          options={options}
-          style={{ height: '60vh' }}
-        />
+        <div style={{ flexGrow: 1 }}>
+          <Line
+            data={data}
+            options={options}
+            style={{ height: '50vh' }}
+          />
+        </div>
       </div>
     </>
   );
