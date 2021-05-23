@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 import { prettyPrint, toMinsSecs } from '../../helpers/date-helpers';
 import NYTButtonGroup from '../imitations/nyt-button-group';
-import { NYTColours } from '../imitations/nyt-colours';
 
 const style = {
   family: 'Franklin, sans-serif',
@@ -17,25 +16,16 @@ const subminuteButtons = [
   { content: 'All', value: false },
 ];
 
-const getAverage = (day) => {
-  const allTimes = Object.values(day);
-
-  if (allTimes.length === 0) return null;
-
-  return (allTimes.reduce((total, time) => total + time, 0) / allTimes.length).toFixed(0);
-};
-
 const TimeGraph = (props) => {
   const { stats, users, selectedUsers } = props;
   const [subminute, setSubminute] = useState(false);
 
   const data = {
     labels: Object.keys(stats).map((date) => prettyPrint(date)),
-    datasets: [...selectedUsers.map((username) => {
+    datasets: selectedUsers.map((username) => {
       const userColour = users.filter((user) => user.name === username)[0].colour;
 
       return {
-        type: 'line',
         label: username,
         data: Object.values(stats).map((day) => day[username]),
         backgroundColor: userColour,
@@ -45,13 +35,6 @@ const TimeGraph = (props) => {
         lineTension: 0.40,
       };
     }),
-    {
-      type: 'bar',
-      label: 'Average',
-      data: Object.values(stats).map((day) => getAverage(day)),
-      backgroundColor: NYTColours.lighterGrey,
-    },
-    ],
   };
 
   let delayed;
@@ -115,7 +98,7 @@ const TimeGraph = (props) => {
         <NYTButtonGroup state={subminute} setState={setSubminute} buttons={subminuteButtons} vertical />
 
         <div style={{ flexGrow: 1 }}>
-          <Bar
+          <Line
             data={data}
             options={options}
             style={{ height: '60vh' }}

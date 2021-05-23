@@ -48,7 +48,7 @@ const PersonalStats = (props) => {
           <OverallPositionCard elo={elo} username={selectedUsername} />
           <FirstsCard stats={stats} username={selectedUsername} />
         </div>
-        <WeekStatsCard stats={stats} username={selectedUsername} />
+        {/* <WeekStatsCard stats={stats} username={selectedUsername} /> */}
       </div>
     </>
   );

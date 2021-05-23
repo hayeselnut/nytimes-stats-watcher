@@ -18,6 +18,7 @@ const NYTThemeColours = {
 const NYTGreyscaleColours = {
   white: '#ffffff',
   offWhite: '#FAFAFA',
+  lighterGrey: '#EEEEEE',
   lightGrey: '#cccccc',
   grey: '#959595',
   darkGrey: '#333333',
