@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Segment } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 
 import LeaderboardStatsGraph from './components/leaderboard-stats-graph';
 import UserSelector from './components/user-selector';
