@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Line } from 'react-chartjs-2';
+
 import { prettyPrint, toMinsSecs } from '../../helpers/date-helpers';
 import NYTButtonGroup from '../imitations/nyt-button-group';
 
