@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/nytimes-stats-watcher/static/css/main.ed0dda79.chunk.css",
-    "main.js": "/nytimes-stats-watcher/static/js/main.939d9abe.chunk.js",
-    "main.js.map": "/nytimes-stats-watcher/static/js/main.939d9abe.chunk.js.map",
+    "main.js": "/nytimes-stats-watcher/static/js/main.898f6fe8.chunk.js",
+    "main.js.map": "/nytimes-stats-watcher/static/js/main.898f6fe8.chunk.js.map",
     "runtime-main.js": "/nytimes-stats-watcher/static/js/runtime-main.57116f69.js",
     "runtime-main.js.map": "/nytimes-stats-watcher/static/js/runtime-main.57116f69.js.map",
     "static/css/2.c9466145.chunk.css": "/nytimes-stats-watcher/static/css/2.c9466145.chunk.css",
-    "static/js/2.14ffcc1e.chunk.js": "/nytimes-stats-watcher/static/js/2.14ffcc1e.chunk.js",
-    "static/js/2.14ffcc1e.chunk.js.map": "/nytimes-stats-watcher/static/js/2.14ffcc1e.chunk.js.map",
+    "static/js/2.73e423d1.chunk.js": "/nytimes-stats-watcher/static/js/2.73e423d1.chunk.js",
+    "static/js/2.73e423d1.chunk.js.map": "/nytimes-stats-watcher/static/js/2.73e423d1.chunk.js.map",
     "index.html": "/nytimes-stats-watcher/index.html",
     "static/css/2.c9466145.chunk.css.map": "/nytimes-stats-watcher/static/css/2.c9466145.chunk.css.map",
     "static/css/main.ed0dda79.chunk.css.map": "/nytimes-stats-watcher/static/css/main.ed0dda79.chunk.css.map",
-    "static/js/2.14ffcc1e.chunk.js.LICENSE.txt": "/nytimes-stats-watcher/static/js/2.14ffcc1e.chunk.js.LICENSE.txt",
+    "static/js/2.73e423d1.chunk.js.LICENSE.txt": "/nytimes-stats-watcher/static/js/2.73e423d1.chunk.js.LICENSE.txt",
     "static/media/nyt.css": "/nytimes-stats-watcher/static/media/OPTIStymie-Bold.e21eee44.otf",
     "static/media/katex.min.css": "/nytimes-stats-watcher/static/media/KaTeX_Typewriter-Regular.c5441b17.ttf",
     "static/media/semantic.min.css": "/nytimes-stats-watcher/static/media/outline-icons.ddae9b1b.woff",
@@ -20,8 +20,8 @@
   "entrypoints": [
     "static/js/runtime-main.57116f69.js",
     "static/css/2.c9466145.chunk.css",
-    "static/js/2.14ffcc1e.chunk.js",
+    "static/js/2.73e423d1.chunk.js",
     "static/css/main.ed0dda79.chunk.css",
-    "static/js/main.939d9abe.chunk.js"
+    "static/js/main.898f6fe8.chunk.js"
   ]
 }
