@@ -6,10 +6,12 @@ import { Dropdown } from 'semantic-ui-react';
 import { NYTColours } from './imitations/nyt-colours';
 import NYTHeader from './imitations/nyt-header';
 
-import FastestTimeCard from './statCards/fastestTimeCard';
-import AverageTimeCard from './statCards/averageTimeCard';
-import FirstsCard from './statCards/firstsCard';
-import OverallRankCard from './statCards/overallRankCard';
+import FastestTimeCard from './statCards/fastest-time-card';
+import AverageTimeCard from './statCards/avg-time-card';
+import FirstsCard from './statCards/firsts-card';
+import OverallPositionCard from './statCards/overall-position-card';
+import WeekStatsCard from './statCards/week-stats-card';
+
 
 const PersonalStats = (props) => {
   const { users, stats, elo } = props;
@@ -40,10 +42,13 @@ const PersonalStats = (props) => {
       </NYTHeader>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
-        <AverageTimeCard stats={stats} username={selectedUsername} />
-        <FastestTimeCard stats={stats} username={selectedUsername} />
-        <OverallRankCard elo={elo} username={selectedUsername} />
-        <FirstsCard stats={stats} username={selectedUsername} />
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+          <AverageTimeCard stats={stats} username={selectedUsername} />
+          <FastestTimeCard stats={stats} username={selectedUsername} />
+          <OverallPositionCard elo={elo} username={selectedUsername} />
+          <FirstsCard stats={stats} username={selectedUsername} />
+        </div>
+        <WeekStatsCard stats={stats} username={selectedUsername} />
       </div>
     </>
   );

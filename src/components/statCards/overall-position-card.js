@@ -16,7 +16,7 @@ const getPosition = (sortedLatestElos, username) => {
   }
 };
 
-const OverallRankCard = (props) => {
+const OverallPositionCard = (props) => {
   const { elo, username } = props;
 
   const latestElos = Object.values(elo).slice(-1)[0] || {};
@@ -30,9 +30,9 @@ const OverallRankCard = (props) => {
   return <NYTCard emoji='🆚' header={`${position}`} subheader='Overall rank' />;
 };
 
-OverallRankCard.propTypes = {
+OverallPositionCard.propTypes = {
   elo: PropTypes.object,
   username: PropTypes.string,
 };
 
-export default OverallRankCard;
+export default OverallPositionCard;

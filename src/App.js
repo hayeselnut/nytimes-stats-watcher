@@ -5,7 +5,7 @@ import LeaderboardStatsGraph from './components/leaderboard-stats-graph';
 import UserSelector from './components/user-selector';
 import NYTContainer from './components/imitations/nyt-container';
 import { NYTColours } from './components/imitations/nyt-colours';
-import PersonalStats from './components/personalStats';
+import PersonalStats from './components/personal-stats';
 
 import { getUsernamesInURL } from './helpers/url-helpers';
 import { getNewStats, getNewUsers, getElo } from './helpers/stats-helpers';

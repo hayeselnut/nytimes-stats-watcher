@@ -6,21 +6,24 @@ import { Segment } from 'semantic-ui-react';
 import { NYTColours } from './nyt-colours';
 import NYTHeader from './nyt-header';
 
-const style = {
-  width: '208px',
-  height: '290px',
-  margin: '20px 10px',
-  borderRadius: '7px',
-  boxShadow: `0 7px 0 0 ${NYTColours.darkBlue}`,
-
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
 
 const NYTCard = (props) => {
-  const { emoji, header, subheader, content } = props;
+  const { emoji, header, subheader, content, large } = props;
+
+  const style = {
+    width: large ? '705px' : '208px',
+    height: large ? '480px' : '290px',
+    // width: large ? '37.6rem' : '16.8rem',
+    // height: large ? '25.6rem' : '23.2rem',
+    margin: '20px 10px',
+    borderRadius: '7px',
+    boxShadow: `0 7px 0 0 ${NYTColours.darkBlue}`,
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  };
 
   return (
     <Segment style={style}>
@@ -52,6 +55,7 @@ NYTCard.propTypes = {
   header: PropTypes.string,
   subheader: PropTypes.string,
   content: PropTypes.string,
+  large: PropTypes.bool,
 };
 
 export default NYTCard;

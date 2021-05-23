@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Line } from 'react-chartjs-2';
 
-import { prettyPrint, toMinsSecs } from '../../helpers/date-helpers';
-import NYTButtonGroup from '../imitations/nyt-button-group';
+import { prettyPrint } from '../../helpers/date-helpers';
 
 const style = {
   family: 'Franklin, sans-serif',
@@ -85,7 +84,7 @@ const EloGraph = (props) => {
         <Line
           data={data}
           options={options}
-          style={{ height: '50vh' }}
+          style={{ height: '60vh' }}
         />
       </div>
     </>

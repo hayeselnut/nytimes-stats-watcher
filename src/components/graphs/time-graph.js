@@ -101,7 +101,7 @@ const TimeGraph = (props) => {
           <Line
             data={data}
             options={options}
-            style={{ height: '50vh' }}
+            style={{ height: '60vh' }}
           />
         </div>
       </div>
